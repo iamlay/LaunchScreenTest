@@ -7,8 +7,14 @@
 //
 
 #import "AppDelegate.h"
+#import "HomeViewController.h"
+#import "TsetNavigationVC.h"
+#import "TabViewController.h"
 
 @interface AppDelegate ()
+
+@property(nonatomic,strong)UIView *view;
+@property(nonatomic,strong)UIImageView *launchView;
 
 @end
 
@@ -16,9 +22,18 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
+    
+    self.window = [[UIWindow alloc]initWithFrame:[UIScreen mainScreen].bounds];
+
+    HomeViewController * VC = [[HomeViewController alloc]init];
+    TsetNavigationVC * NC = [[TsetNavigationVC alloc]initWithRootViewController:VC];
+    TabViewController  * TC= [[TabViewController alloc]init];
+    TC.viewControllers = [NSArray arrayWithObjects:NC, nil];
+    [self.window setRootViewController:TC];
+    [self.window makeKeyAndVisible];
     return YES;
 }
+
 
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
